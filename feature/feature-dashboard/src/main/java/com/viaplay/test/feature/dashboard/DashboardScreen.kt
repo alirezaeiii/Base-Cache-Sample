@@ -53,7 +53,7 @@ fun DashboardScreen(
                     ViaplaySwipeRefresh(
                         modifier = Modifier.align(Alignment.CenterHorizontally),
                         state = state,
-                        refresh = viewModel::refresh
+                        refresh = { viewModel.refresh(true) }
                     ) {
                         VerticalCollection(state.base.items ?: emptyList(), viewModel::onLinkClick)
                     }

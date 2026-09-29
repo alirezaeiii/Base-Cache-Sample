@@ -61,7 +61,7 @@ fun DetailsScreen(
                     ViaplaySwipeRefresh(
                         modifier = Modifier.align(Alignment.CenterHorizontally),
                         state = state,
-                        refresh = viewModel::refresh
+                        refresh = { viewModel.refresh(true) }
                     ) {
                         Column(
                             modifier = Modifier
