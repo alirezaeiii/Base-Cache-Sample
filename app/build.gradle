@@ -8,12 +8,12 @@ plugins {
 android {
     namespace 'com.viaplay.test'
 
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.viaplay.test"
         minSdkVersion 24
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode 1
         versionName "1.0"
 
@@ -46,7 +46,9 @@ dependencies {
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.androidx.compose.material
-    implementation libs.androidx.navigation
+    implementation libs.androidx.navigation3.runtime
+    implementation libs.androidx.navigation3.ui
+    implementation libs.androidx.lifecycle.viewmodel.navigation3
 
     implementation libs.hilt
     implementation libs.hilt.navigation.compose

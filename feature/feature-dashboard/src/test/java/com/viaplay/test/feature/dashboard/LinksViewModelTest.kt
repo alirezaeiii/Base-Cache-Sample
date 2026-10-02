@@ -4,10 +4,9 @@ import app.cash.turbine.test
 import com.viaplay.test.common.base.BaseRepository
 import com.viaplay.test.common.utils.Async
 import com.viaplay.test.domain.model.Link
+import com.viaplay.test.navigation.Routes
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkStatic
-import android.net.Uri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
@@ -31,8 +30,6 @@ class LinksViewModelTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
-        mockkStatic(Uri::class)
-        every { Uri.encode(any()) } answers { firstArg() }
     }
 
     @After
@@ -104,6 +101,7 @@ class LinksViewModelTest {
             viewModel.onLinkClick(link)
             val event = awaitItem()
             assertTrue(event is DashboardUiEvent.Navigate)
+            assertEquals(Routes.DetailsRoute(link), (event as DashboardUiEvent.Navigate).route)
             cancelAndIgnoreRemainingEvents()
         }
     }

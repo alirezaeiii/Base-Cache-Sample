@@ -6,9 +6,7 @@ plugins {
 
 android {
     namespace = "com.viaplay.test.data"
-    compileSdk {
-        version = release(35)
-    }
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24

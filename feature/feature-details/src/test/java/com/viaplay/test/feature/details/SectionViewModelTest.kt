@@ -1,6 +1,5 @@
 package com.viaplay.test.feature.details
 
-import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
 import com.viaplay.test.common.base.BaseRepository
 import com.viaplay.test.common.utils.Async
@@ -26,7 +25,6 @@ import org.junit.Test
 class SectionViewModelTest {
 
     private val repository: BaseRepository<Section, String, String> = mockk()
-    private val savedStateHandle: SavedStateHandle = mockk()
     private val testDispatcher = StandardTestDispatcher()
 
     private val link = Link("1", "Title", "http://example.com/1")
@@ -34,7 +32,6 @@ class SectionViewModelTest {
     @Before
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
-        every { savedStateHandle.get<Link>("link") } returns link
     }
 
     @After
@@ -46,7 +43,7 @@ class SectionViewModelTest {
     fun `initial state has loading true`() = runTest {
         every { repository.getResult(any(), any(), any()) } returns flowOf(Async.Loading())
 
-        val viewModel = SectionViewModel(repository, savedStateHandle)
+        val viewModel = SectionViewModel(repository, link)
 
         viewModel.state.test {
             val state = awaitItem()
@@ -60,7 +57,7 @@ class SectionViewModelTest {
         val section = Section("1", "Title", "Desc")
         every { repository.getResult(any(), any(), any()) } returns flowOf(Async.Success(section))
 
-        val viewModel = SectionViewModel(repository, savedStateHandle)
+        val viewModel = SectionViewModel(repository, link)
         advanceUntilIdle()
 
         viewModel.state.test {
@@ -81,7 +78,7 @@ class SectionViewModelTest {
                 isWarning = true
             )
         )
-        val viewModel = SectionViewModel(repository, savedStateHandle)
+        val viewModel = SectionViewModel(repository, link)
 
         viewModel.uiEvent.test {
             val event = awaitItem()
@@ -96,7 +93,7 @@ class SectionViewModelTest {
     @Test
     fun `onBackClick emits NavigateUp event`() = runTest {
         every { repository.getResult(any(), any(), any()) } returns flowOf(Async.Loading())
-        val viewModel = SectionViewModel(repository, savedStateHandle)
+        val viewModel = SectionViewModel(repository, link)
 
         viewModel.uiEvent.test {
             viewModel.onBackClick()

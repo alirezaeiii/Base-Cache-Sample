@@ -6,9 +6,7 @@ plugins {
 
 android {
     namespace = "com.viaplay.test.feature.details"
-    compileSdk {
-        version = release(35)
-    }
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -48,6 +46,7 @@ dependencies {
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.compose.material.icons.extended)
+    implementation(libs.androidx.navigation3.runtime)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 

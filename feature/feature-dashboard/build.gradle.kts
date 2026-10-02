@@ -6,9 +6,7 @@ plugins {
 
 android {
     namespace = "com.viaplay.test.feature.dashboard"
-    compileSdk {
-        version = release(35)
-    }
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -42,11 +40,13 @@ android {
 dependencies {
     implementation(project(":common"))
     implementation(project(":core:domain"))
+    api(project(":navigation"))
     implementation(libs.gson)
     implementation(libs.androidx.material)
     implementation(libs.androidx.compose)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation3.runtime)
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 

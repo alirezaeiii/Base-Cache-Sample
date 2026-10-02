@@ -8,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.SnackbarHostState
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation3.runtime.NavKey
 import com.viaplay.test.common.ui.common.ErrorScreen
 import com.viaplay.test.common.ui.common.ProgressScreen
 import kotlinx.coroutines.flow.collectLatest
@@ -17,7 +18,7 @@ fun <TYPE, STATE : BaseScreenState<TYPE, STATE>, QueryType, FetchType, EVENT : U
     viewModel: BaseViewModel<TYPE, STATE, QueryType, FetchType, EVENT>,
     snackbarHostState: SnackbarHostState,
     refresh: () -> Unit = { viewModel.refresh() },
-    onNavigate: (String) -> Unit = {},
+    onNavigate: (NavKey) -> Unit = {},
     onNavigateUp: () -> Unit = {},
     mainContent: @Composable (STATE) -> Unit
 ) {

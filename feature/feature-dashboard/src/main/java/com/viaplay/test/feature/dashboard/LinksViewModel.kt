@@ -1,13 +1,10 @@
 package com.viaplay.test.feature.dashboard
 
-import android.net.Uri
-import com.google.gson.Gson
 import com.viaplay.test.common.base.BaseRepository
 import com.viaplay.test.common.base.BaseViewModel
 import com.viaplay.test.common.base.ViewState
-import com.viaplay.test.common.ui.common.Routes
-import com.viaplay.test.common.ui.common.Routes.Companion.LINK
 import com.viaplay.test.domain.model.Link
+import com.viaplay.test.navigation.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -20,8 +17,6 @@ class LinksViewModel @Inject constructor(
     DashboardUiEvent::ShowWarning
 ) {
     fun onLinkClick(link: Link) {
-        val json = Uri.encode(Gson().toJson(link))
-        val route = Routes.Details.title.replace("{${LINK}}", json)
-        emitEvent(DashboardUiEvent.Navigate(route))
+        emitEvent(DashboardUiEvent.Navigate(Routes.DetailsRoute(link)))
     }
 }

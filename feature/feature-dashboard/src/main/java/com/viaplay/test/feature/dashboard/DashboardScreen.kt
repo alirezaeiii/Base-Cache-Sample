@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation3.runtime.NavKey
 import com.viaplay.test.common.base.Content
 import com.viaplay.test.common.ui.common.ViaplaySwipeRefresh
 import com.viaplay.test.domain.model.Link
@@ -29,7 +30,7 @@ import com.viaplay.test.domain.model.Link
 @Composable
 fun DashboardScreen(
     viewModel: LinksViewModel,
-    navigateToDetail: (String) -> Unit
+    onNavigate: (NavKey) -> Unit
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     Scaffold(
@@ -47,7 +48,7 @@ fun DashboardScreen(
             Content(
                 viewModel = viewModel,
                 snackbarHostState = snackbarHostState,
-                onNavigate = navigateToDetail
+                onNavigate = onNavigate
             ) { state ->
                 Column(modifier = Modifier.padding(padding)) {
                     ViaplaySwipeRefresh(
