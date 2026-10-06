@@ -44,7 +44,6 @@ dependencies {
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.coil.compose)
     implementation(libs.coil.compose.core)
-    implementation(libs.accompanist.swiperefresh)
 
     testImplementation(libs.junit)
 }
