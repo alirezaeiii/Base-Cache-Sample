@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.viaplay.test.feature.dashboard"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 24
@@ -32,9 +32,7 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
-    }
+
 }
 
 dependencies {

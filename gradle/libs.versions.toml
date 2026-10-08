@@ -1,33 +1,32 @@
 [versions]
-agp = "9.3.1"
-androidx-activityCompose = "1.12.2"
-androidx-appcompat = "1.7.1"
-androidx-core-ktx = "1.12.0"
+agp = "9.3.3"
+androidx-activityCompose = "1.13.0"
+androidx-appcompat = "1.8.0"
+androidx-core-ktx = "1.19.1"
 androidx-espresso-core = "3.7.0"
-androidx-lifecycle = "2.9.6"
-androidx-material = "1.13.0"
+androidx-lifecycle = "2.11.0"
+androidx-material = "1.14.0"
 androidx-test-junit = "1.3.0"
 junit = "4.13.2"
-kotlin = "2.3.0"
-coroutines = "1.10.2"
+kotlin = "2.4.21"
+coroutines = "1.11.0"
 mockk = "1.14.11"
 turbine = "1.2.1"
 coil = "2.7.0"
-ksp = "2.3.11"
+ksp = "2.3.12"
 dagger = "2.60.1"
-hilt-navigation = "1.2.0"
-room = "2.8.4"
-compose = "1.9.2"
+hilt-navigation = "1.4.0"
+room = "2.8.5"
+compose = "1.12.1"
 icons-extended = "1.7.8"
-navigation = "2.8.4"
-retrofit = "2.12.0"
-gson-converter = "2.12.0"
-gson = "2.13.2"
-lifecycleRuntimeKtx = "2.9.4"
+retrofit = "3.0.0"
+gson-converter = "3.0.0"
+gson = "2.14.0"
+lifecycleRuntimeKtx = "2.11.0"
 material3 = "1.4.0"
-nav3Core = "1.0.0"
-lifecycleViewmodelNav3 = "2.10.0-rc01"
-kotlinxSerialization = "1.7.3"
+nav3Core = "1.2.0"
+lifecycleViewmodelNav3 = "2.11.0"
+kotlinxSerialization = "1.11.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -45,9 +44,8 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 androidx-compose = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
-androidx-compose-uitooloing = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose"}
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "icons-extended" }
-androidx-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 androidx-room = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
