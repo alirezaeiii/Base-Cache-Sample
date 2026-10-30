@@ -7,8 +7,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSerializable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavEntry
@@ -33,7 +31,7 @@ fun rememberNavigationState(
 
     val backStacks = topLevelRoutes.associateWith { key -> rememberNavBackStack(key) }
 
-    return remember(startRoute, topLevelRoutes) {
+    return remember(startRoute, topLevelRoutes, backStacks) {
         NavigationState(
             startRoute = startRoute,
             topLevelRoute = topLevelRoute,
@@ -48,23 +46,21 @@ class NavigationState(
     val backStacks: Map<NavKey, NavBackStack<NavKey>>
 ) {
     var topLevelRoute: NavKey by topLevelRoute
+
     val stacksInUse: List<NavKey>
-        get() = if (topLevelRoute == startRoute) {
-            listOf(startRoute)
-        } else {
-            listOf(startRoute, topLevelRoute)
-        }
+        get() = listOf(topLevelRoute)
 }
 
 @Composable
 fun NavigationState.toEntries(
     entryProvider: (NavKey) -> NavEntry<NavKey>
-): SnapshotStateList<NavEntry<NavKey>> {
+): List<NavEntry<NavKey>> {
     val decoratedEntries = backStacks.mapValues { (_, stack) ->
         val decorators = listOf(
             rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
-            rememberViewModelStoreNavEntryDecorator<NavKey>()
+            rememberViewModelStoreNavEntryDecorator()
         )
+
         rememberDecoratedNavEntries(
             backStack = stack,
             entryDecorators = decorators,
@@ -72,7 +68,5 @@ fun NavigationState.toEntries(
         )
     }
 
-    return stacksInUse
-        .flatMap { decoratedEntries[it] ?: emptyList() }
-        .toMutableStateList()
+    return stacksInUse.flatMap { decoratedEntries[it].orEmpty() }
 }
