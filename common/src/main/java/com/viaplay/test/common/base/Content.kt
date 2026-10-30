@@ -11,6 +11,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavKey
 import com.viaplay.test.common.ui.common.ErrorScreen
 import com.viaplay.test.common.ui.common.ProgressScreen
+import com.viaplay.test.navigation.UiEvent
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable

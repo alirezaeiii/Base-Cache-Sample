@@ -2,12 +2,11 @@ package com.viaplay.test.data.repository
 
 import android.content.Context
 import app.cash.turbine.test
-import com.viaplay.test.common.utils.Async
+import com.viaplay.test.domain.utils.Async
 import com.viaplay.test.data.api.BackendApi
 import com.viaplay.test.data.database.SectionEntity
 import com.viaplay.test.data.database.SectionEntityDao
 import com.viaplay.test.data.response.SectionResponse
-import com.viaplay.test.domain.model.Section
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every

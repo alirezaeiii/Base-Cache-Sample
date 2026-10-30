@@ -1,4 +1,4 @@
-package com.viaplay.test.common.utils
+package com.viaplay.test.domain.utils
 
 sealed class Async<out R> {
     data class Loading(val isRefreshing: Boolean = false) : Async<Nothing>()

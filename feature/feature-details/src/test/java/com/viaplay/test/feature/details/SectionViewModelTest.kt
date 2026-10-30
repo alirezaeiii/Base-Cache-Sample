@@ -1,8 +1,8 @@
 package com.viaplay.test.feature.details
 
 import app.cash.turbine.test
-import com.viaplay.test.common.base.BaseRepository
-import com.viaplay.test.common.utils.Async
+import com.viaplay.test.domain.repository.BaseRepository
+import com.viaplay.test.domain.utils.Async
 import com.viaplay.test.domain.model.Link
 import com.viaplay.test.domain.model.Section
 import io.mockk.every

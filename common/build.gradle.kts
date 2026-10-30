@@ -35,6 +35,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:domain"))
+    implementation(project(":navigation"))
     implementation(libs.androidx.compose)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.material)

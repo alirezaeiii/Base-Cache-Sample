@@ -1,6 +1,6 @@
 package com.viaplay.test.feature.dashboard
 
-import com.viaplay.test.common.base.BaseRepository
+import com.viaplay.test.domain.repository.BaseRepository
 import com.viaplay.test.common.base.BaseViewModel
 import com.viaplay.test.common.base.ViewState
 import com.viaplay.test.domain.model.Link

@@ -1,7 +1,7 @@
 package com.viaplay.test.data.repository
 
 import android.content.Context
-import com.viaplay.test.common.base.BaseRepository
+import com.viaplay.test.domain.repository.BaseRepository
 import com.viaplay.test.data.api.BackendApi
 import com.viaplay.test.data.database.SectionEntityDao
 import com.viaplay.test.data.database.asDatabaseModel

@@ -37,6 +37,7 @@ android {
 
 dependencies {
     implementation(project(":core:domain"))
+    implementation(project(":common"))
     api(project(":navigation"))
     implementation(libs.gson)
     implementation(libs.androidx.material)

@@ -1,4 +1,4 @@
-package com.viaplay.test.common.base
+package com.viaplay.test.navigation
 
 import androidx.navigation3.runtime.NavKey
 
