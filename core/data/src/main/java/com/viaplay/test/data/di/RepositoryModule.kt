@@ -1,6 +1,6 @@
 package com.viaplay.test.data.di
 
-import com.viaplay.test.common.base.BaseRepository
+import com.viaplay.test.domain.repository.BaseRepository
 import com.viaplay.test.data.repository.LinksRepository
 import com.viaplay.test.data.repository.SectionRepository
 import com.viaplay.test.domain.model.Link

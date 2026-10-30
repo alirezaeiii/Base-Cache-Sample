@@ -6,17 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.viaplay.test.common.ui.common.Routes
-import com.viaplay.test.common.ui.common.Routes.Companion.LINK
+import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.ui.NavDisplay
 import com.viaplay.test.common.ui.theme.AppTheme
 import com.viaplay.test.feature.dashboard.DashboardScreen
 import com.viaplay.test.feature.details.DetailsScreen
+import com.viaplay.test.feature.details.SectionViewModel
+import com.viaplay.test.navigation.Routes
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,36 +24,47 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val navController = rememberNavController()
-
             AppTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    NavGraph(navController)
+                    AppNavGraph()
                 }
             }
         }
     }
 }
 
+
 @Composable
-fun NavGraph(navController: NavHostController) {
-    NavHost(navController, startDestination = Routes.LINKS.title) {
-        composable(Routes.LINKS.title) {
-            DashboardScreen(hiltViewModel()) { route ->
-                navController.navigate(route)
-            }
-        }
-        composable(
-            Routes.Details.title, arguments = listOf(
-                navArgument(LINK) {
-                    type = LinkNavType()
+fun AppNavGraph() {
+    val navState = rememberNavigationState(
+        startRoute = Routes.LinksRoute,
+        topLevelRoutes = setOf(Routes.LinksRoute)
+    )
+    val navigator = remember(navState) { AppNavigator(navState) }
+
+    NavDisplay(
+        entries = navState.toEntries { key ->
+            when (key) {
+                is Routes.LinksRoute -> NavEntry(key) {
+                    DashboardScreen(
+                        hiltViewModel(),
+                        navigator::navigate
+                    )
                 }
-            )
-        ) {
-            DetailsScreen(
-                hiltViewModel(),
-                navController::navigateUp
-            )
-        }
-    }
+
+                is Routes.DetailsRoute -> NavEntry(key) {
+                    DetailsScreen(
+                        hiltViewModel<SectionViewModel, SectionViewModel.Factory>(
+                            key = "Details_${key.link.id}",
+                            creationCallback = { factory -> factory.create(key.link) },
+                        ),
+                        navigator::goBack
+                    )
+                }
+
+                else -> error("Unknown route: $key")
+            }
+        },
+        onBack = navigator::goBack
+    )
 }

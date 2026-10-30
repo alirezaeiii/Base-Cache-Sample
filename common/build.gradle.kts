@@ -5,9 +5,7 @@ plugins {
 
 android {
     namespace = "com.viaplay.test.common"
-    compileSdk {
-        version = release(35)
-    }
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 24
@@ -33,19 +31,19 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
-    }
+
 }
 
 dependencies {
+    implementation(project(":core:domain"))
+    implementation(project(":navigation"))
     implementation(libs.androidx.compose)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.material)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation3.runtime)
     implementation(libs.coil.compose)
     implementation(libs.coil.compose.core)
-    implementation(libs.accompanist.swiperefresh)
 
     testImplementation(libs.junit)
 }

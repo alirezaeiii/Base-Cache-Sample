@@ -1,8 +1,8 @@
-package com.viaplay.test.common.base
+package com.viaplay.test.domain.repository
 
 import android.content.Context
-import com.viaplay.test.common.R
-import com.viaplay.test.common.utils.Async
+import com.viaplay.test.domain.utils.Async
+import com.viaplay.test.domain.R
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
@@ -38,6 +38,7 @@ abstract class BaseRepository<DataType, QueryType, FetchType>(
                     fetchParam = fetchParam,
                     forceRefresh = forceRefresh
                 )
+
                 is List<*> if dbData.isEmpty() -> load(
                     queryParam = queryParam,
                     fetchParam = fetchParam,

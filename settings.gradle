@@ -1,18 +1,18 @@
 pluginManagement {
     repositories {
+        //maven { url 'https://maven.myket.ir' }
         google()
         mavenCentral()
         gradlePluginPortal()
-        //maven { url 'https://maven.myket.ir' }
     }
 }
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        //maven { url 'https://maven.myket.ir' }
         google()
         mavenCentral()
-        //maven { url 'https://maven.myket.ir' }
     }
 }
 
@@ -23,3 +23,4 @@ include ':core:domain'
 include ':core:data'
 include ':feature:feature-dashboard'
 include ':feature:feature-details'
+include ':navigation'

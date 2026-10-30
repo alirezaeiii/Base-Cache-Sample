@@ -1,13 +1,11 @@
 plugins {
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     namespace = "com.viaplay.test.domain"
-    compileSdk {
-        version = release(35)
-    }
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 24
@@ -32,10 +30,10 @@ android {
 }
 
 dependencies {
-    api(project(":common"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.material)
+    implementation(libs.kotlinx.serialization.json)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.espresso.core)

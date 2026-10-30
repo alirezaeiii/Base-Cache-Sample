@@ -2,7 +2,9 @@ package com.viaplay.test.common.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.viaplay.test.common.utils.Async
+import com.viaplay.test.domain.repository.BaseRepository
+import com.viaplay.test.domain.utils.Async
+import com.viaplay.test.navigation.UiEvent
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

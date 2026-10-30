@@ -8,12 +8,12 @@ plugins {
 android {
     namespace 'com.viaplay.test'
 
-    compileSdk 35
+    compileSdk 37
 
     defaultConfig {
         applicationId "com.viaplay.test"
         minSdkVersion 24
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode 1
         versionName "1.0"
 
@@ -33,20 +33,21 @@ android {
     buildFeatures {
         compose true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.5.14'
-    }
+
 }
 
 dependencies {
     implementation(project(":core:data"))
-    implementation implementation(project(':feature:feature-dashboard'))
+    implementation(project(":common"))
+    implementation project(':feature:feature-dashboard')
     implementation(project(":feature:feature-details"))
 
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.androidx.compose.material
-    implementation libs.androidx.navigation
+    implementation libs.androidx.navigation3.runtime
+    implementation libs.androidx.navigation3.ui
+    implementation libs.androidx.lifecycle.viewmodel.navigation3
 
     implementation libs.hilt
     implementation libs.hilt.navigation.compose

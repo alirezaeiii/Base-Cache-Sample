@@ -2,7 +2,7 @@ package com.viaplay.test.data.repository
 
 import android.content.Context
 import app.cash.turbine.test
-import com.viaplay.test.common.utils.Async
+import com.viaplay.test.domain.utils.Async
 import com.viaplay.test.data.api.BackendApi
 import com.viaplay.test.data.database.LinkEntity
 import com.viaplay.test.data.database.LinkEntityDao
