@@ -1,10 +1,11 @@
 package com.viaplay.test.feature.details
 
 import app.cash.turbine.test
-import com.viaplay.test.domain.repository.BaseRepository
-import com.viaplay.test.domain.utils.Async
+import com.viaplay.test.common.base.UiEvent
 import com.viaplay.test.domain.model.Link
 import com.viaplay.test.domain.model.Section
+import com.viaplay.test.domain.repository.BaseRepository
+import com.viaplay.test.domain.utils.Async
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
@@ -83,7 +84,7 @@ class SectionViewModelTest {
         viewModel.uiEvent.test {
             val event = awaitItem()
             assertEquals(
-                DetailsUiEvent.ShowWarning(warningMessage),
+                UiEvent.ShowWarning(warningMessage),
                 event
             )
             cancelAndIgnoreRemainingEvents()
@@ -98,7 +99,7 @@ class SectionViewModelTest {
         viewModel.uiEvent.test {
             viewModel.onBackClick()
             val event = awaitItem()
-            assertTrue(event is DetailsUiEvent.NavigateUp)
+            assertTrue(event is UiEvent.NavigateUp)
             cancelAndIgnoreRemainingEvents()
         }
     }

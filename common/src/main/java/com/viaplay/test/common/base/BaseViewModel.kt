@@ -4,22 +4,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.viaplay.test.domain.repository.BaseRepository
 import com.viaplay.test.domain.utils.Async
-import com.viaplay.test.navigation.UiEvent
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<DataType, STATE : BaseScreenState<DataType, STATE>, QueryType, FetchType, EVENT : UiEvent>(
+abstract class BaseViewModel<DataType, STATE : BaseScreenState<DataType, STATE>, QueryType, FetchType>(
     private val repository: BaseRepository<DataType, QueryType, FetchType>,
     initialState: STATE,
-    private val createWarningEvent: (String) -> EVENT,
     private val queryParam: QueryType? = null,
     private val fetchParam: FetchType? = null,
     loadDataOnInit: Boolean = true
@@ -28,7 +26,7 @@ abstract class BaseViewModel<DataType, STATE : BaseScreenState<DataType, STATE>,
     private val _state = MutableStateFlow(initialState)
     val state: StateFlow<STATE> = _state.asStateFlow()
 
-    private val _uiEvent = MutableSharedFlow<EVENT>()
+    private val _uiEvent = MutableSharedFlow<UiEvent>()
     val uiEvent = _uiEvent.asSharedFlow()
 
     private var job: Job? = null
@@ -78,15 +76,14 @@ abstract class BaseViewModel<DataType, STATE : BaseScreenState<DataType, STATE>,
     private fun reduceLoading(old: STATE, isRefreshing: Boolean): STATE =
         old.withLoading(isRefreshing)
 
-
     private fun reduceError(old: STATE, msg: String, isWarning: Boolean): STATE =
         old.withError(msg, isWarning)
 
     private suspend fun emitWarning(message: String) {
-        _uiEvent.emit(createWarningEvent(message))
+        _uiEvent.emit(UiEvent.ShowWarning(message))
     }
 
-    protected fun emitEvent(event: EVENT) {
+    protected fun emitEvent(event: UiEvent) {
         viewModelScope.launch {
             _uiEvent.emit(event)
         }
