@@ -31,7 +31,7 @@ import com.viaplay.test.common.ui.common.ViaplaySwipeRefresh
 @Composable
 fun DetailsScreen(
     viewModel: SectionViewModel,
-    onBack: () -> Unit
+    onNavigateUp: () -> Unit
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     Scaffold(
@@ -54,7 +54,7 @@ fun DetailsScreen(
             Content(
                 viewModel = viewModel,
                 snackbarHostState = snackbarHostState,
-                onNavigateUp = onBack
+                onNavigateUp = onNavigateUp
             ) { state ->
                 Column(modifier = Modifier.padding(padding)) {
                     ViaplaySwipeRefresh(
