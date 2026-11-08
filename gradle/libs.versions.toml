@@ -19,11 +19,11 @@ compose = "1.12.1"
 icons-extended = "1.7.8"
 retrofit = "3.0.0"
 gson-converter = "3.0.0"
-gson = "2.14.0"
+gson = "2.15.0"
 material3 = "1.4.0"
 nav3Core = "1.2.0"
 lifecycleViewmodelNav3 = "2.11.0"
-kotlinxSerialization = "1.11.0"
+kotlinxSerialization = "1.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
